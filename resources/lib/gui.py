@@ -1,9 +1,12 @@
 import xbmcgui
-import ssdp
-from utils import log, openSettings, getLS, getSetting, setSetting, getAddonVersion, getAddonChangelog, updateSavedAddonVersion
+from . import ssdp
+from .utils import log, openSettings, getLS, getSetting, setSetting, getAddonVersion, getAddonChangelog, updateSavedAddonVersion
 
 def notifyUser(message,time=3000, icon=xbmcgui.NOTIFICATION_INFO):
     xbmcgui.Dialog().notification('Hyperion Control', message.encode('utf-8'), icon, time)
+
+def notifyUserDialog(message):
+    xbmcgui.Dialog().ok('Hyperion Control', message.encode('utf-8'))
 
 def buildSelectList(data):
     list = []

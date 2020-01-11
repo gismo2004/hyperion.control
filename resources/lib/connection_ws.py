@@ -1,4 +1,4 @@
-from utils import log
+from .utils import log
 import xbmc, xbmcaddon, time
 import websocket
 

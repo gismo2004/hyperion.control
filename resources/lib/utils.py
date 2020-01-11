@@ -1,33 +1,35 @@
 import xbmc, xbmcaddon
 import simplejson as json
 
-ADDON = xbmcaddon.Addon()
-ADDONNAME = ADDON.getAddonInfo('id')
+#don't use this, as the instance does not get updated --> no setting update
+#https://forum.kodi.tv/showthread.php?tid=290353&pid=2425543#pid2425543
+#ADDON = xbmcaddon.Addon()
+ADDONNAME = xbmcaddon.Addon().getAddonInfo('id')
 
 def log(message, level=xbmc.LOGNOTICE):
-    xbmc.log('[%s] %s' % (ADDONNAME, message.encode('utf-8')), level)
+    xbmc.log('[%s] %s' % (ADDONNAME, message), level)
 
 def getSetting(opt):
-    return ADDON.getSetting(opt)
+    return xbmcaddon.Addon().getSetting(opt)
 
 def getAddonVersion():
-    return ADDON.getAddonInfo('version')
+    return xbmcaddon.Addon().getAddonInfo('version')
 
 def getAddonChangelog():
-    return ADDON.getAddonInfo('changelog')
+    return xbmcaddon.Addon().getAddonInfo('changelog')
 
 def getBoolSetting(opt):
     """ With Kodi 18 native api available """
-    return True if ADDON.getSetting(opt).upper() == "TRUE" else False
+    return True if xbmcaddon.Addon().getSetting(opt).upper() == "TRUE" else False
 
 def setSetting(opt, value):
-    return ADDON.setSetting(opt, value)
+    return xbmcaddon.Addon().setSetting(opt, value)
 
 def openSettings():
-    ADDON.openSettings()
+    xbmcaddon.Addon().openSettings()
 
 def getLS(nr):
-    return ADDON.getLocalizedString(nr)
+    return xbmcaddon.Addon().getLocalizedString(nr)
 
 def validateAuthToken(authToken):
     return True if len(authToken) == 36 else False

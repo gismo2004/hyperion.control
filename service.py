@@ -1,6 +1,6 @@
 import xbmc, xbmcgui
 from resources.lib.utils import *
-from resources.lib.gui import doInitialWizard, doChangelogDisplay, doSSDPDiscovery, notifyUser
+from resources.lib.gui import doInitialWizard, doChangelogDisplay, doSSDPDiscovery, notifyUser, notifyUserDialog
 from resources.lib.connection import Connection
 
 class XBMCPlayer(xbmc.Player):
@@ -156,8 +156,12 @@ class Hyperion:
         self.connection.updateURL(self.ip, self.port)
         if validateAuthToken(self.authToken):
             self.connection.updateHeader(self.authToken)
-        elif self.authToken != "":
-            notifyUser(getLS(32105))
+        else:
+            self.connection.updateHeader("")
+            if self.authToken != "":
+                #use a OKDialog as the notification gets overwritten by "status update"
+                notifyUserDialog(getLS(32105))
+
         # do just once on startup, we might want to show a changelog
         if not self.initialized:
             self.initialize()
