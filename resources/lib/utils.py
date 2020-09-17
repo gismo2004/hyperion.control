@@ -6,7 +6,7 @@ import simplejson as json
 #ADDON = xbmcaddon.Addon()
 ADDONNAME = xbmcaddon.Addon().getAddonInfo('id')
 
-def log(message, level=xbmc.LOGNOTICE):
+def log(message, level=xbmc.LOGINFO):
     xbmc.log('[%s] %s' % (ADDONNAME, message), level)
 
 def getSetting(opt):
